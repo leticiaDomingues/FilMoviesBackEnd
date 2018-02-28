@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilMoviesAPI.Model
 {
-    class Actor
+    public class Actor
     {
         public int ActorID { get; set; }
         public String Name { get; set; }

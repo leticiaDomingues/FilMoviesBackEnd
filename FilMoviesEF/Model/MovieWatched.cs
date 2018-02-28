@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilMoviesAPI.Model
 {
-    class MovieWatched
+    public class MovieWatched
     {
         public Boolean? Favorite { get; set; }
         public float? Rate { get; set; }

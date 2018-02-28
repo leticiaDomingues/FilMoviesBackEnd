@@ -69,6 +69,24 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ActorRepository.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\DirectorRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IActorRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDirectorRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IMovieRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IMovieWatchedRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IReviewRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUnityOfWork.cs" />
+    <Compile Include="Repositories\Interfaces\IUserInterface.cs" />
+    <Compile Include="Repositories\MovieRepository.cs" />
+    <Compile Include="Repositories\MovieWatchedRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\ReviewRepository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

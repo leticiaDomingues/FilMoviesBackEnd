@@ -1,1 +1,5 @@
 .vs/
+FilMoviesAPI/bin/
+FilMoviesAPI/obj/
+FilMoviesEF/bin/
+FilMoviesEF/obj/

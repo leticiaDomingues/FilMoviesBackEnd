@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FilMoviesAPI
 {
-    class FilMoviesDBInitializer : DropCreateDatabaseAlways<FilMoviesContext>
+    public class FilMoviesDBInitializer : DropCreateDatabaseAlways<FilMoviesContext>
     {
         protected override void Seed(FilMoviesContext context)
         {

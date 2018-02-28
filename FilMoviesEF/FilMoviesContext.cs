@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FilMoviesAPI
 {
-    class FilMoviesContext : DbContext
+    public class FilMoviesContext : DbContext
     {
         public FilMoviesContext() : base("name=FilMoviesDBConnectionString")
         {
