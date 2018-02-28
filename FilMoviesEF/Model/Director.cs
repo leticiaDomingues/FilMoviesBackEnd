@@ -11,6 +11,6 @@ namespace FilMoviesAPI.Model
         public int DirectorID { get; set; }
         public String Name { get; set; }
 
-        public virtual ICollection<Movie> Movies { get; set; }
+        public ICollection<Movie> Movies { get; set; }
     }
 }

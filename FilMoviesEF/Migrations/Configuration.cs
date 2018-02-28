@@ -1,4 +1,4 @@
-namespace FilMoviesEF.Migrations
+namespace FilMoviesAPI.Migrations
 {
     using System;
     using System.Data.Entity;

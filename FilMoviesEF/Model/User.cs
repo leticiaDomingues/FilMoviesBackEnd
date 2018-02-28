@@ -12,7 +12,7 @@ namespace FilMoviesAPI.Model
         public String Password { get; set; }
         public String Name { get; set; }
 
-        public virtual ICollection<Review> Reviews { get; set; }
-        public virtual ICollection<MovieWatched> MoviesWatched { get; set; }
+        public ICollection<Review> Reviews { get; set; }
+        public ICollection<MovieWatched> MoviesWatched { get; set; }
     }
 }

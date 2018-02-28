@@ -1,12 +1,12 @@
 ﻿using FilMoviesAPI;
-using FilMoviesEF.Repositories.Interfaces;
+using FilMoviesAPI.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilMoviesEF.Repositories
+namespace FilMoviesAPI.Repositories
 {
     public class UnitOfWork : IUnityOfWork
     {

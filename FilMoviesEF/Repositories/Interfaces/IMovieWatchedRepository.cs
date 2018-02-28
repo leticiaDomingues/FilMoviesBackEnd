@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilMoviesEF.Repositories.Interfaces
+namespace FilMoviesAPI.Repositories.Interfaces
 {
     public interface IMovieWatchedRepository : IRepository<MovieWatched>
     {

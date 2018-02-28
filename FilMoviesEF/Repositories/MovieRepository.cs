@@ -1,13 +1,14 @@
 ﻿using FilMoviesAPI;
 using FilMoviesAPI.Model;
-using FilMoviesEF.Repositories.Interfaces;
+using FilMoviesAPI.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilMoviesEF.Repositories
+namespace FilMoviesAPI.Repositories
 {
     public class MovieRepository : Repository<Movie>, IMovieRepository
     {
@@ -42,7 +43,7 @@ namespace FilMoviesEF.Repositories
 
         public IEnumerable<Movie> GetRandomMovies()
         {
-            throw new NotImplementedException();
+            return FilMoviesContext.Movies.ToList().OrderBy(_ => Guid.NewGuid());
         }
 
         public IEnumerable<Movie> GetWatchedMovies(User user)

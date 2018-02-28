@@ -1,4 +1,4 @@
-﻿using FilMoviesEF.Repositories.Interfaces;
+﻿using FilMoviesAPI.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilMoviesEF.Repositories
+namespace FilMoviesAPI.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {

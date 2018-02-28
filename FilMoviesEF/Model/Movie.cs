@@ -16,10 +16,10 @@ namespace FilMoviesAPI.Model
         public String ImageUrl { get; set; }
         public float Rate { get; set; }
 
-        public virtual ICollection<Review> Reviews { get; set; }
-        public virtual ICollection<MovieWatched> MoviesWatched { get; set; }
-        public virtual ICollection<Category> Categories { get; set; }
-        public virtual ICollection<Director> Directors { get; set; }
-        public virtual ICollection<Actor> Actors { get; set; }
+        public ICollection<Review> Reviews { get; set; }
+        public ICollection<MovieWatched> MoviesWatched { get; set; }
+        public ICollection<Category> Categories { get; set; }
+        public ICollection<Director> Directors { get; set; }
+        public ICollection<Actor> Actors { get; set; }
     }
 }
