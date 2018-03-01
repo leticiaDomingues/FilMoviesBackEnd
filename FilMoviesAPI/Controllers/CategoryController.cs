@@ -6,11 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace FilMoviesAPI.Controllers
 {
     public class CategoryController : ApiController
     {
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
         public HttpResponseMessage Get(int id)
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
@@ -18,7 +20,8 @@ namespace FilMoviesAPI.Controllers
                 try
                 {
                     Category category = unityOfWork.Categories.Get(id);
-                    return Request.CreateResponse(HttpStatusCode.OK, category);
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, category);
+                    return response;
                 }
                 catch (KeyNotFoundException)
                 {
@@ -29,6 +32,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
         public HttpResponseMessage Get()
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))

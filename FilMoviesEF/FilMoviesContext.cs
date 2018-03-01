@@ -25,7 +25,7 @@ namespace FilMoviesAPI
 
 
             /******* Movie configuration ********/
-            modelBuilder.Entity<Movie>().Property(p => p.Title).HasMaxLength(30).IsRequired();
+            modelBuilder.Entity<Movie>().Property(p => p.Title).HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Movie>().Property(p => p.ReleaseDate).IsRequired();
             modelBuilder.Entity<Movie>().Property(p => p.Rate).IsOptional();
             modelBuilder.Entity<Movie>().Property(p => p.Description).IsRequired();

@@ -59,6 +59,10 @@
     <Compile Include="Migrations\201802271924015_create_sp_calculate_rate.Designer.cs">
       <DependentUpon>201802271924015_create_sp_calculate_rate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802281818290_update_movie_title_length.cs" />
+    <Compile Include="Migrations\201802281818290_update_movie_title_length.Designer.cs">
+      <DependentUpon>201802281818290_update_movie_title_length.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Actor.cs" />
     <Compile Include="Model\Category.cs" />
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802271924015_create_sp_calculate_rate.resx">
       <DependentUpon>201802271924015_create_sp_calculate_rate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802281818290_update_movie_title_length.resx">
+      <DependentUpon>201802281818290_update_movie_title_length.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,11 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace FilMoviesAPI.Controllers
 {
     public class MovieController : ApiController
     {
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
         public HttpResponseMessage Get(int id)
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
@@ -29,6 +31,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
         public HttpResponseMessage Get()
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
@@ -47,6 +50,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
         [Route("api/movie/random")]
         public HttpResponseMessage GetAll()
         {
