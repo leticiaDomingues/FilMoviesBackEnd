@@ -38,5 +38,19 @@ namespace FilMoviesAPI.Controllers
                 }
             }
         }
+
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        public HttpResponseMessage Post([FromBody] Review r)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                unityOfWork.Reviews.Add(r);
+                unityOfWork.Complete();
+
+                return Request.CreateResponse(HttpStatusCode.Created);
+            }               
+        }
+
+
     }
 }
