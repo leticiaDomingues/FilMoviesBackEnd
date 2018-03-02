@@ -9,5 +9,7 @@ namespace FilMoviesAPI.Repositories.Interfaces
 {
     public interface IReviewRepository : IRepository<Review>
     {
+        IEnumerable<CompleteReview> GetReviewsByMovie(int MovieID, int page);
+        int countReviewsByMovie(int MovieID);
     }
 }

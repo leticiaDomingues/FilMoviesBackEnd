@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace FilMoviesAPI.Repositories
 {
@@ -19,5 +20,62 @@ namespace FilMoviesAPI.Repositories
         {
             get { return Context as FilMoviesContext; }
         }
+
+        public IEnumerable<CompleteReview> GetReviewsByMovie(int MovieID, int page)
+        {
+            IEnumerable<CompleteReview> reviews = FilMoviesContext.Reviews
+                .Where(r => r.MovieID == MovieID).Select(r=> new CompleteReview
+                {
+                    Review = r,
+                    Favorite = null,
+                    Rate = null,
+                    User = null
+                })
+                .OrderByDescending(r=> r.Review.Date)
+                .Skip((page - 1) * 3).Take(3).ToList();
+
+            foreach (CompleteReview review in reviews)
+            {
+                var movieWatched = FilMoviesContext.MoviesWatched.FirstOrDefault(
+                    mw => mw.Username == review.Review.Username &&
+                          mw.MovieID == review.Review.MovieID);
+                review.User = FilMoviesContext.Users.Find(review.Review.Username);
+                if (movieWatched != null)
+                {
+                    review.Rate = movieWatched.Rate;
+                    review.Favorite = movieWatched.Favorite;
+                }
+            }
+
+            return reviews;
+
+            /*return FilMoviesContext.Reviews    
+                    .Join(FilMoviesContext.MoviesWatched, 
+                            r => r.MovieID,        
+                            mw => mw.MovieID,  
+                        (r, mw) => new CompleteReview {
+                            Review = r,
+                            Favorite = mw.Favorite,
+                            Rate = mw.Rate,
+                            User = mw.User
+                        })
+                    .Where(rmw => rmw.Review.MovieID == MovieID && rmw.User.Username == rmw.Review.Username)
+                    .OrderByDescending(r => r.Review.Date)
+                    .ToList();     */
+        }
+
+        public int countReviewsByMovie(int MovieID)
+        {
+            return FilMoviesContext.Reviews.Where(r => r.MovieID == MovieID).Count();
+        }
     }
+}
+
+
+public class CompleteReview
+{
+    public Review Review { get; set; }
+    public bool? Favorite { get; set; }
+    public float? Rate { get; set; }
+    public User User { get; set; }
 }
