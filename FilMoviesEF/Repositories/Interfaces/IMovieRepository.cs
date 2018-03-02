@@ -9,6 +9,7 @@ namespace FilMoviesAPI.Repositories.Interfaces
 {
     public interface IMovieRepository : IRepository<Movie>
     {
+        new Movie Get(int movieID);
         IEnumerable<Movie> GetMoviesByCategory(int CategoryId, int page);
         IEnumerable<Movie> GetNewMovies(int page);
         IEnumerable<Movie> GetBestMovies(int page);

@@ -16,6 +16,14 @@ namespace FilMoviesAPI.Repositories
         {
         }
 
+        public new Movie Get(int movieID) {
+            return FilMoviesContext.Movies
+                .Include(m => m.Categories)
+                .Include(m => m.Actors)
+                .Include(m => m.Directors)
+                .FirstOrDefault(m=> m.MovieID == movieID);
+        }
+
         public FilMoviesContext FilMoviesContext
         {
             get { return Context as FilMoviesContext; }
