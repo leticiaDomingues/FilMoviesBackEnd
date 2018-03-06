@@ -1,0 +1,89 @@
+﻿using FilMoviesAPI.Model;
+using FilMoviesAPI.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Cors;
+
+namespace FilMoviesAPI.Controllers
+{
+    public class MovieWatchedController : ApiController
+    {
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        public HttpResponseMessage Post([FromBody] MovieWatched mw)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                unityOfWork.MoviesWatched.Add(mw);
+                unityOfWork.Complete();
+
+                return Request.CreateResponse(HttpStatusCode.Created);
+            }
+        }
+
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        public HttpResponseMessage Get([FromUri] int MovieID, [FromUri] string username)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                try
+                {
+                    MovieWatched mw = unityOfWork.MoviesWatched.Get(MovieID, username);
+                    return Request.CreateResponse(HttpStatusCode.Created, mw);
+                }
+                catch (KeyNotFoundException)
+                {
+                    var mensagem = string.Format("Erro");
+                    var error = new HttpError(mensagem);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
+                }
+            }
+        }
+
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        public HttpResponseMessage Delete([FromUri] int MovieID, [FromUri] string username)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                try
+                {
+                    MovieWatched mw = unityOfWork.MoviesWatched.Get(MovieID, username);
+                    var response = unityOfWork.MoviesWatched.Remove(mw);
+                    unityOfWork.Complete();
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+                catch (KeyNotFoundException)
+                {
+                    var mensagem = string.Format("Erro");
+                    var error = new HttpError(mensagem);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
+                }
+            }  
+        }
+
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        public HttpResponseMessage Put([FromBody] MovieWatched mw)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                try
+                {
+                    var mwBD = unityOfWork.MoviesWatched.Get(mw.MovieID, mw.Username);
+                    mwBD.Favorite = mw.Favorite;
+                    mwBD.Rate = mw.Rate;
+                    unityOfWork.Complete();
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                catch (KeyNotFoundException)
+                {
+                    var mensagem = string.Format("Erro");
+                    var error = new HttpError(mensagem);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
+                }
+            }
+        }
+    }
+}

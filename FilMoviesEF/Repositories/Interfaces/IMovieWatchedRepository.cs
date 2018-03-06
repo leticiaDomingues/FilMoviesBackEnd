@@ -9,5 +9,7 @@ namespace FilMoviesAPI.Repositories.Interfaces
 {
     public interface IMovieWatchedRepository : IRepository<MovieWatched>
     {
+        MovieWatched Get(int MovieID, string username);
+        MovieWatched Remove(MovieWatched movieWatched);
     }
 }
