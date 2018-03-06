@@ -7,6 +7,7 @@ using System.Linq;
 using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace FilMoviesAPI.Repositories
 {
@@ -88,5 +89,23 @@ namespace FilMoviesAPI.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public float CalculateMovieRate(int movieID)
+        {
+            try { 
+                var updatedRate = FilMoviesContext.Database.SqlQuery<double>("DECLARE @return_value int,  @rate float " +
+                                                    "EXEC @return_value = [dbo].[calculateRate] " +
+                                                    "@movieId =  " + movieID + ", " +
+                                                    "@rate = @rate OUTPUT " +
+                                                    "SELECT  @rate as N'@rate' ").FirstOrDefault();
+
+                return (float)updatedRate;
+            } catch(Exception e)
+            {
+                return -1.0f;
+            }
+            
+        }
+
     }
 }

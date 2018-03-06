@@ -20,6 +20,8 @@ namespace FilMoviesAPI.Controllers
                 unityOfWork.MoviesWatched.Add(mw);
                 unityOfWork.Complete();
 
+                updateMovieRate(unityOfWork, mw.MovieID);
+
                 return Request.CreateResponse(HttpStatusCode.Created);
             }
         }
@@ -53,6 +55,8 @@ namespace FilMoviesAPI.Controllers
                     MovieWatched mw = unityOfWork.MoviesWatched.Get(MovieID, username);
                     var response = unityOfWork.MoviesWatched.Remove(mw);
                     unityOfWork.Complete();
+                    updateMovieRate(unityOfWork, mw.MovieID);
+
                     return Request.CreateResponse(HttpStatusCode.OK, response);
                 }
                 catch (KeyNotFoundException)
@@ -75,6 +79,9 @@ namespace FilMoviesAPI.Controllers
                     mwBD.Favorite = mw.Favorite;
                     mwBD.Rate = mw.Rate;
                     unityOfWork.Complete();
+
+                    updateMovieRate(unityOfWork, mw.MovieID);
+
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
                 catch (KeyNotFoundException)
@@ -83,6 +90,17 @@ namespace FilMoviesAPI.Controllers
                     var error = new HttpError(mensagem);
                     return Request.CreateResponse(HttpStatusCode.NotFound, error);
                 }
+            }
+        }
+
+        private void updateMovieRate(UnitOfWork unityOfWork, int MovieID)
+        {
+            float newRate = unityOfWork.Movies.CalculateMovieRate(MovieID);
+            if (newRate != -1)
+            {
+                Movie m = unityOfWork.Movies.Get(MovieID);
+                m.Rate = newRate;
+                unityOfWork.Complete();
             }
         }
     }
