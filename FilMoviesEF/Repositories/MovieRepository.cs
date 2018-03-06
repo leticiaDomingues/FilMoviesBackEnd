@@ -40,18 +40,13 @@ namespace FilMoviesAPI.Repositories
             return FilMoviesContext.Movies.OrderByDescending(m => m.Rate).Skip((page - 1) * 18).Take(18).ToList();
         }
 
-        public IEnumerable<Movie> GetFavoriteMovies(User user)
+        public IEnumerable<MovieWatched> GetFavoriteMovies(string username)
         {
-            /*  SELECT COUNT(mw.Favorite) as fav, mw.MovieID FROM Movies m
-	            INNER JOIN MoviesWatched mw
-		            ON m.MovieID = mw.MovieID
-		            AND mw.Favorite IS NOT NULL
-	            GROUP BY mw.MovieID
-	            ORDER BY fav DESC*/
-
-
-            throw new NotImplementedException();
-
+            return FilMoviesContext.MoviesWatched
+               .Include(mw => mw.Movie)
+               .Where(mw => mw.Username == username && mw.Favorite == true)
+               .OrderByDescending(mw => mw.Date)
+               .ToList();
         }
 
         public IEnumerable<Movie> GetMoviesByCategory(int CategoryId, int page)
@@ -85,9 +80,13 @@ namespace FilMoviesAPI.Repositories
             return FilMoviesContext.Movies.Take<Movie>(32).ToList().OrderBy(_ => Guid.NewGuid());
         }
 
-        public IEnumerable<Movie> GetWatchedMovies(User user)
+        public IEnumerable<MovieWatched> GetWatchedMovies(string username, int page)
         {
-            throw new NotImplementedException();
+            return FilMoviesContext.MoviesWatched
+                .Include(mw => mw.Movie)
+                .Where(mw=>mw.Username == username)
+                .OrderByDescending(mw=>mw.Date)
+                .ToList();
         }
 
         public float CalculateMovieRate(int movieID)
@@ -106,6 +105,5 @@ namespace FilMoviesAPI.Repositories
             }
             
         }
-
     }
 }

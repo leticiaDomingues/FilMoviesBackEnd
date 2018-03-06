@@ -567,11 +567,32 @@ namespace FilMoviesAPI
             context.Movies.Add(m33);
 
             //create movie watched
-            context.MoviesWatched.Add(new MovieWatched() { User = users[1], Movie = m1, Rate = 4.5f });
-            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m1, Rate = 5f, Favorite = true });
-            context.MoviesWatched.Add(new MovieWatched() { User = users[3], Movie = m1, Rate = 4f });
-            context.MoviesWatched.Add(new MovieWatched() { User = users[3], Movie = m2, Rate = 4.5f });
-            context.MoviesWatched.Add(new MovieWatched() { User = users[0], Movie = m2, Rate = 5f });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[1], Movie = m1, Rate = 4.5f, Date = new DateTime(2018, 03, 06) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m1, Rate = 5f, Favorite = true, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[3], Movie = m1, Rate = 4.4f, Date = new DateTime(2018, 03, 04) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[3], Movie = m2, Rate = 4.5f, Date = new DateTime(2018, 03, 03) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[0], Movie = m2, Rate = 5f, Date = new DateTime(2018, 03, 02) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m4, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m6, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m30, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m25, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m23, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m21, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m19, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m17, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m15, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m13, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m11, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m9, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m8, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m7, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m16, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m33, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m32, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m28, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m5, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m22, Favorite = false, Date = new DateTime(2018, 03, 05) });
+
 
 
             //create reviews

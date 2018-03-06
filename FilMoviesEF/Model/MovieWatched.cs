@@ -10,6 +10,7 @@ namespace FilMoviesAPI.Model
     {
         public Boolean? Favorite { get; set; }
         public float? Rate { get; set; }
+        public DateTime Date { get; set; }
 
 
         public String Username { get; set; }

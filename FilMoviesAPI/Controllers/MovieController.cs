@@ -193,5 +193,61 @@ namespace FilMoviesAPI.Controllers
                 }
             }
         }
+
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [Route("api/movie/user")]
+        public HttpResponseMessage GetWatchedByUsername([FromUri] string username, [FromUri] int page)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                try
+                {
+                    ICollection<MovieWatched> movies = (ICollection<MovieWatched>)unityOfWork.Movies.GetWatchedMovies(username, page);
+                    int howMany = movies.Count();
+                    var result = new
+                    {
+                        movies = movies.Skip((page - 1) * 18).Take(18),
+                        page,
+                        count = howMany,
+                        username
+                    };
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                catch (KeyNotFoundException)
+                {
+                    var mensagem = string.Format("Erro");
+                    var error = new HttpError(mensagem);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
+                }
+            }
+        }
+
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [Route("api/movie/favorite")]
+        public HttpResponseMessage GetFavoriteByUser([FromUri] string username, [FromUri] int page)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                try
+                {
+                    ICollection<MovieWatched> movies = (ICollection<MovieWatched>)unityOfWork.Movies.GetFavoriteMovies(username);
+                    int howMany = movies.Count();
+                    var result = new
+                    {
+                        movies = movies.Skip((page - 1) * 18).Take(18),
+                        page,
+                        count = howMany,
+                        username
+                    };
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                catch (KeyNotFoundException)
+                {
+                    var mensagem = string.Format("Erro");
+                    var error = new HttpError(mensagem);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
+                }
+            }
+        }
     }
 }
