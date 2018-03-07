@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encryption.cs" />
     <Compile Include="FilMoviesContext.cs" />
     <Compile Include="FilMoviesDBInitializer.cs" />
     <Compile Include="Migrations\201802271923312_InitialCreate.cs" />
@@ -66,6 +67,10 @@
     <Compile Include="Migrations\201803061915327_update_watchedmovie_add_date.cs" />
     <Compile Include="Migrations\201803061915327_update_watchedmovie_add_date.Designer.cs">
       <DependentUpon>201803061915327_update_watchedmovie_add_date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803071253205_update_password_length.cs" />
+    <Compile Include="Migrations\201803071253205_update_password_length.Designer.cs">
+      <DependentUpon>201803071253205_update_password_length.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Actor.cs" />
@@ -112,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803061915327_update_watchedmovie_add_date.resx">
       <DependentUpon>201803061915327_update_watchedmovie_add_date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803071253205_update_password_length.resx">
+      <DependentUpon>201803071253205_update_password_length.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

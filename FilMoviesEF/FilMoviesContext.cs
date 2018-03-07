@@ -20,7 +20,7 @@ namespace FilMoviesAPI
             /******* User configuration ********/
             modelBuilder.Entity<User>().HasKey<String>(s => s.Username);
             modelBuilder.Entity<User>().Property(p => p.Username).HasMaxLength(30);
-            modelBuilder.Entity<User>().Property(p => p.Password).HasMaxLength(30).IsRequired();
+            modelBuilder.Entity<User>().Property(p => p.Password).HasMaxLength(64).IsRequired();
             modelBuilder.Entity<User>().Property(p => p.Name).HasMaxLength(50).IsRequired();
 
 

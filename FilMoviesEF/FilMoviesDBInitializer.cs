@@ -1,4 +1,5 @@
 ﻿using FilMoviesAPI.Model;
+using FilMoviesEF;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,10 +15,10 @@ namespace FilMoviesAPI
         {
             //Create users
             List<User> users = new List<User> {
-                new User() { Username = "let", Password = "123", Name = "Leticia Domingues" }, //users[0]
-                new User() { Username = "maria", Password = "123", Name = "Maria Rodrigues" }, //users[1]
-                new User() { Username = "isa", Password = "123", Name = "Isabela Sato" },      //users[2]
-                new User() { Username = "alex", Password = "123", Name = "Alexsander Baldin" } //users[3]
+                new User() { Username = "let", Password =  Encryption.sha256("123"), Name = "Leticia Domingues" }, //users[0]
+                new User() { Username = "maria", Password = Encryption.sha256("123"), Name = "Maria Rodrigues" }, //users[1]
+                new User() { Username = "isa", Password = Encryption.sha256("123"), Name = "Isabela Sato" },      //users[2]
+                new User() { Username = "alex", Password = Encryption.sha256("123"), Name = "Alexsander Baldin" } //users[3]
             };
             context.Users.AddRange(users);
 

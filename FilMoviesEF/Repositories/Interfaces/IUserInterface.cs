@@ -9,6 +9,6 @@ namespace FilMoviesAPI.Repositories.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {
-
+        User Login(User user);
     }
 }

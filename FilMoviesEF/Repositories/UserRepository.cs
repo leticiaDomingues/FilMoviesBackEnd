@@ -1,6 +1,7 @@
 ﻿using FilMoviesAPI;
 using FilMoviesAPI.Model;
 using FilMoviesAPI.Repositories.Interfaces;
+using FilMoviesEF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,21 @@ namespace FilMoviesAPI.Repositories
         public FilMoviesContext FilMoviesContext
         {
             get { return Context as FilMoviesContext; }
+        }
+
+        public User Login(User user)
+        {
+            try {
+                var password = Encryption.sha256(user.Password);
+                User userDB = FilMoviesContext.Users.Where(u => 
+                    u.Username.Equals(user.Username) && 
+                    u.Password.Equals(password)).First();
+                userDB.Password = null;
+                return userDB;
+            } catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }
