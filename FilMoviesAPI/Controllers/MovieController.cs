@@ -249,5 +249,25 @@ namespace FilMoviesAPI.Controllers
                 }
             }
         }
+
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [Route("api/movie/mostWatched")]
+        public HttpResponseMessage GetMostWatchedMovies()
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                try
+                {
+                    ICollection<Movie> movies = (ICollection<Movie>)unityOfWork.Movies.GetMostWatchedMovies();
+                    return Request.CreateResponse(HttpStatusCode.OK, movies);
+                }
+                catch (KeyNotFoundException)
+                {
+                    var mensagem = string.Format("Erro");
+                    var error = new HttpError(mensagem);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
+                }
+            }
+        }
     }
 }

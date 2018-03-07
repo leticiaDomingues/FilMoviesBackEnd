@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Collections.ObjectModel;
 
 namespace FilMoviesAPI.Repositories
 {
@@ -86,6 +87,7 @@ namespace FilMoviesAPI.Repositories
                 .Include(mw => mw.Movie)
                 .Where(mw=>mw.Username == username)
                 .OrderByDescending(mw=>mw.Date)
+                .Take(6)
                 .ToList();
         }
 
@@ -104,6 +106,37 @@ namespace FilMoviesAPI.Repositories
                 return -1.0f;
             }
             
+        }
+
+        public IEnumerable<Movie> GetMostWatchedMovies()
+        {
+            try
+            {
+                var query = "SELECT COUNT(mw.MovieID) AS qts, mw.MovieID FROM movies m " +
+                        "JOIN MoviesWatched mw " +
+                        "ON mw.MovieID = m.MovieID " +
+                        "GROUP BY mw.MovieID " +
+                        "ORDER BY qts desc ";
+                var aux = FilMoviesContext.Database.SqlQuery<AUXCLASS>(query).ToList().Take(6);
+
+                ICollection<Movie> movies = new Collection<Movie>();
+                foreach(AUXCLASS movieCount in aux)
+                    movies.Add(FilMoviesContext.Movies.Where(m=>m.MovieID == movieCount.movieID).FirstOrDefault());
+
+                return movies;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+        private class AUXCLASS
+        {
+            public int qts { get; set; }
+            public int movieID { get; set; }
         }
     }
 }
