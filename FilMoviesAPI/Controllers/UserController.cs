@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using FilMoviesAPI.Model;
 using FilMoviesAPI.Repositories;
+using FilMoviesEF;
 
 namespace FilMoviesAPI.Controllers
 {
@@ -28,6 +29,43 @@ namespace FilMoviesAPI.Controllers
                         correctCredentials
                     };
                     return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                catch (KeyNotFoundException)
+                {
+                    var mensagem = string.Format("Erro");
+                    var error = new HttpError(mensagem);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
+                }
+            }
+        }
+
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        public HttpResponseMessage Post([FromBody] User user)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                try
+                {
+                    bool usernameTaken = false;
+                    User createdUser = null;
+
+                    if (unityOfWork.Users.Get(user.Username) != null)
+                        usernameTaken = true;
+                    else
+                    {
+                        user.Password = Encryption.sha256(user.Password);
+                        createdUser = unityOfWork.Users.Add(user);
+                        unityOfWork.Complete();
+                        createdUser.Password = null;
+                    }
+
+                    var msg = new
+                    {
+                        user = createdUser,
+                        usernameTaken
+                    };
+
+                    return Request.CreateResponse(HttpStatusCode.Created, msg);
                 }
                 catch (KeyNotFoundException)
                 {

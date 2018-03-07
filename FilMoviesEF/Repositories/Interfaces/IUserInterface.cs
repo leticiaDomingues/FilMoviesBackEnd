@@ -10,5 +10,8 @@ namespace FilMoviesAPI.Repositories.Interfaces
     public interface IUserRepository : IRepository<User>
     {
         User Login(User user);
+        User Get(string username);
+
+        new User Add(User user);
     }
 }

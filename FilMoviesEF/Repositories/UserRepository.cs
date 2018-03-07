@@ -21,6 +21,11 @@ namespace FilMoviesAPI.Repositories
             get { return Context as FilMoviesContext; }
         }
 
+        public User Get(string username)
+        {
+            return FilMoviesContext.Users.Where(u => u.Username.Equals(username)).FirstOrDefault();
+        }
+
         public User Login(User user)
         {
             try {
@@ -34,6 +39,11 @@ namespace FilMoviesAPI.Repositories
             {
                 return null;
             }
+        }
+
+        User IUserRepository.Add(User user)
+        {
+            return FilMoviesContext.Users.Add(user);
         }
     }
 }
