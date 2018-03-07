@@ -133,6 +133,32 @@ namespace FilMoviesAPI.Repositories
 
         }
 
+        public IEnumerable<Movie> GetMostFavoriteMovies()
+        {
+            try
+            {
+                var query = "SELECT COUNT(mw.MovieID) AS qts, mw.MovieID FROM movies m " +
+                        "JOIN MoviesWatched mw " +
+                        "ON mw.MovieID = m.MovieID " +
+                        "WHERE mw.Favorite=1" +
+                        "GROUP BY mw.MovieID " +
+                        "ORDER BY qts desc ";
+                var aux = FilMoviesContext.Database.SqlQuery<AUXCLASS>(query).ToList().Take(6);
+
+                ICollection<Movie> movies = new Collection<Movie>();
+                foreach (AUXCLASS movieCount in aux)
+                    movies.Add(FilMoviesContext.Movies.Where(m => m.MovieID == movieCount.movieID).FirstOrDefault());
+
+                return movies;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
         private class AUXCLASS
         {
             public int qts { get; set; }
