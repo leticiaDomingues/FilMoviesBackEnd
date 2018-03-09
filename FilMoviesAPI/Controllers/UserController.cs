@@ -13,7 +13,7 @@ namespace FilMoviesAPI.Controllers
 {
     public class UserController : ApiController
     {
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/user/login")]
         public HttpResponseMessage Login([FromBody] User user)
         {
@@ -39,7 +39,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Post([FromBody] User user)
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))

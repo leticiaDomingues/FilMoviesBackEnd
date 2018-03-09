@@ -12,7 +12,7 @@ namespace FilMoviesAPI.Controllers
 {
     public class MovieWatchedController : ApiController
     {
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Post([FromBody] MovieWatched mw)
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
@@ -26,7 +26,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Get([FromUri] int MovieID, [FromUri] string username)
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
@@ -45,7 +45,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Delete([FromUri] int MovieID, [FromUri] string username)
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
@@ -68,7 +68,7 @@ namespace FilMoviesAPI.Controllers
             }  
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Put([FromBody] MovieWatched mw)
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))

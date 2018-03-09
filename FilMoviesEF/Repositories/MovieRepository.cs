@@ -81,13 +81,17 @@ namespace FilMoviesAPI.Repositories
             return FilMoviesContext.Movies.Take<Movie>(32).ToList().OrderBy(_ => Guid.NewGuid());
         }
 
+        public IEnumerable<Movie> GetRandomMovies(int qty)
+        {
+            return FilMoviesContext.Movies.Take<Movie>(qty).ToList().OrderBy(_ => Guid.NewGuid());
+        }
+
         public IEnumerable<MovieWatched> GetWatchedMovies(string username, int page)
         {
             return FilMoviesContext.MoviesWatched
                 .Include(mw => mw.Movie)
                 .Where(mw=>mw.Username == username)
                 .OrderByDescending(mw=>mw.Date)
-                .Take(6)
                 .ToList();
         }
 

@@ -10,7 +10,7 @@ namespace FilMoviesAPI
     {
         public static void Register(HttpConfiguration config)
         {
-            var cors = new EnableCorsAttribute("http://localhost:8080", "*", "*");
+            var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors();
 
             // Web API configuration and services

@@ -12,7 +12,7 @@ namespace FilMoviesAPI.Controllers
 {
     public class ReviewController : ApiController
     {
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/review/movie")]
         public HttpResponseMessage GetReviewsByMovie([FromUri] int MovieId, [FromUri] int page)
         {
@@ -39,7 +39,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Post([FromBody] Review r)
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))

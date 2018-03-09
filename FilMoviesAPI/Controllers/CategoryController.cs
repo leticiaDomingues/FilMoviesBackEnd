@@ -12,7 +12,7 @@ namespace FilMoviesAPI.Controllers
 {
     public class CategoryController : ApiController
     {
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Get(int id)
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
@@ -32,7 +32,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Get()
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))

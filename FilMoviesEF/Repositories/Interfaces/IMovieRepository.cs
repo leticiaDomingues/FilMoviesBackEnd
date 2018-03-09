@@ -19,6 +19,9 @@ namespace FilMoviesAPI.Repositories.Interfaces
         IEnumerable<MovieWatched> GetWatchedMovies(string username, int page);
         IEnumerable<MovieWatched> GetFavoriteMovies(string username);
         IEnumerable<Movie> GetMostFavoriteMovies();
+
+        IEnumerable<Movie> GetRandomMovies(int qty);
+
         float CalculateMovieRate(int movieID);
         int CountMovies();
     }

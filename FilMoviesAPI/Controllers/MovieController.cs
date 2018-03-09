@@ -12,7 +12,7 @@ namespace FilMoviesAPI.Controllers
 {
     public class MovieController : ApiController
     {
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Get(int id)
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
@@ -31,7 +31,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Get()
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
@@ -50,7 +50,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/random")]
         public HttpResponseMessage GetRandom()
         {
@@ -70,7 +70,27 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        [Route("api/movie/random")]
+        public HttpResponseMessage GetRandom([FromUri] int qty)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                try
+                {
+                    IEnumerable<Movie> movies = unityOfWork.Movies.GetRandomMovies(qty);
+                    return Request.CreateResponse(HttpStatusCode.OK, movies);
+                }
+                catch (KeyNotFoundException)
+                {
+                    var mensagem = string.Format("Erro");
+                    var error = new HttpError(mensagem);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
+                }
+            }
+        }
+
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/best/rate")]
         public HttpResponseMessage GetBestRated([FromUri] int page)
         {
@@ -97,7 +117,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/new")]
         public HttpResponseMessage GetNewMovies([FromUri] int page)
         {
@@ -125,7 +145,7 @@ namespace FilMoviesAPI.Controllers
         }
 
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/category")]
         public HttpResponseMessage GetByCategory([FromUri] int categoryId, [FromUri] int page)
         {
@@ -160,7 +180,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/query")]
         public HttpResponseMessage GetByQuery([FromUri] string query, [FromUri] int page)
         {
@@ -194,7 +214,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/user")]
         public HttpResponseMessage GetWatchedByUsername([FromUri] string username, [FromUri] int page)
         {
@@ -222,7 +242,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/favorite")]
         public HttpResponseMessage GetFavoriteByUser([FromUri] string username, [FromUri] int page)
         {
@@ -250,7 +270,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/mostWatched")]
         public HttpResponseMessage GetMostWatchedMovies()
         {
@@ -270,7 +290,7 @@ namespace FilMoviesAPI.Controllers
             }
         }
 
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/mostFavorite")]
         public HttpResponseMessage GetMostFavoriteMovies()
         {

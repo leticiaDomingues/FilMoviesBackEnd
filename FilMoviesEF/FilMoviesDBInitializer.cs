@@ -57,7 +57,17 @@ namespace FilMoviesAPI
                 new Director() { Name = "Damien Chazelle" },      //directors[14]
                 new Director() { Name = "Garth Davis" },          //directors[15]
                 new Director() { Name = "Denis Villeneuve" },     //directors[16]
-                new Director() { Name = "Stephen Chbosky" }       //directors[17]
+                new Director() { Name = "Stephen Chbosky" },      //directors[17]
+                new Director() { Name = "Frank Darabont" },       //directors[18]
+                new Director() { Name = "Quentin Tarantino" },    //directors[19]
+                new Director() { Name = "Robert Zemeckis" },        //directors[20]
+                new Director() { Name = "Tony Kaye" },        //directors[21]
+                new Director() { Name = "Alfred Hitchcock" },        //directors[22]
+                new Director() { Name = "Roman Polanski" },        //directors[23]
+                new Director() { Name = "Martin Scorsese" },       //directors[24]
+                new Director() { Name = "Damien Chazelle" },        //directors[25]
+                new Director() { Name = "Sam Mendes" },        //directors[26]
+                new Director() { Name = "Sam Mendes" }        //directors[27]
             };
             context.Directors.AddRange(directors);
 
@@ -115,7 +125,53 @@ namespace FilMoviesAPI
                 new Actor() { Name = "Forest Whitaker" },         //actors[49]
                 new Actor() { Name = "Jacob Tremblay" },          //actors[50]
                 new Actor() { Name = "Owen Wilson" },             //actors[51]
-                new Actor() { Name = "Izabela Vidovic" }          //actors[52]
+                new Actor() { Name = "Izabela Vidovic" },          //actors[52]
+                new Actor() { Name = "Tim Robbins" },             //actors[53]
+                new Actor() { Name = "Morgan Freeman" },          //actors[54]
+                new Actor() { Name = "Bob Gunton" },              //actors[55]
+                new Actor() { Name = "Liam Neeson" },             //actors[53]
+                new Actor() { Name = "Ralph Fiennes" },           //actors[54]
+                new Actor() { Name = "Ben Kingsley" },            //actors[55]
+                new Actor() { Name = "Liam Neeson" },             //actors[56]
+                new Actor() { Name = "Ralph Fiennes" },           //actors[57]
+                new Actor() { Name = "Ben Kingsley" },            //actors[58]
+                new Actor() { Name = "John Travolta" },           //actors[59]
+                new Actor() { Name = "Uma Thurman" },             //actors[60]
+                new Actor() { Name = "Samuel L. Jackson" },       //actors[61]
+                new Actor() { Name = "Robin Wright" },            //actors[62]
+                new Actor() { Name = "Gary Sinise" },             //actors[63]
+                new Actor() { Name = "Leonardo DiCaprio" },       //actors[64]
+                new Actor() { Name = "Joseph Gordon-Levitt" },    //actors[65]
+                new Actor() { Name = "Ellen Page" },              //actors[66]
+                new Actor() { Name = "Kevin Spacey" },            //actors[67]
+                new Actor() { Name = "Matthew McConaughey" },     //actors[68]
+                new Actor() { Name = "Anne Hathaway" },           //actors[69]
+                new Actor() { Name = "Jessica Chastain" },        //actors[70]
+                new Actor() { Name = "Edward Furlong" },             //actors[71]
+                new Actor() { Name = "Beverly D'Angelo" },           //actors[72]
+                new Actor() { Name = "Anthony Perkins" },             //actors[73]
+                new Actor() { Name = "Janet Leigh" },             //actors[74]
+                new Actor() { Name = "Vera Miles" },           //actors[75]
+                new Actor() { Name = "James Stewart" },             //actors[76]
+                new Actor() { Name = "Grace Kelly" },             //actors[77]
+                new Actor() { Name = "Wendell Corey" },           //actors[78]
+                new Actor() { Name = "Adrien Brody" },             //actors[79]
+                new Actor() { Name = "Thomas Kretschmann" },             //actors[80]
+                new Actor() { Name = "Frank Finlay" },           //actors[81]
+                new Actor() { Name = "Matt Damon" },             //actors[82]
+                new Actor() { Name = "Jack Nicholson" },             //actors[83]
+                new Actor() { Name = "Miles Teller" },           //actors[84]
+                new Actor() { Name = "J.K. Simmons" },             //actors[85]
+                new Actor() { Name = "Melissa Benoist" },             //actors[86]
+                new Actor() { Name = "Guy Pearce" },           //actors[87]
+                new Actor() { Name = "Carrie-Anne Moss" },             //actors[88]
+                new Actor() { Name = "Joe Pantoliano" },             //actors[89]
+                new Actor() { Name = "Christian Bale" },           //actors[90]
+                new Actor() { Name = "Scarlett Johansson" },             //actors[91]
+                new Actor() { Name = "Shelley Duvall" },             //actors[92]
+                new Actor() { Name = "Danny Lloyd" },           //actors[93]
+                new Actor() { Name = "Annette Bening" },             //actors[94]
+                new Actor() { Name = "Thora Birch" }             //actors[95]
             };
             context.Actors.AddRange(actors);
 
@@ -358,214 +414,243 @@ namespace FilMoviesAPI
 
             Movie m19 = new Movie()
             {
-                Title = "La La Land",
-                Duration = 128,
-                ReleaseDate = new DateTime(2016, 12, 25),
-                Description = "Aspiring actress serves lattes to movie stars in between auditions and jazz musician Sebastian scrapes by playing cocktail-party gigs in dingy bars. But as success mounts, they are faced with decisions that fray the fragile fabric of their love affair, and the dreams they worked so hard to maintain in each other threaten to rip them apart.",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2016/08/097062.jpg",
-                Rate = 4.2f
+                Title = "The Shawshank Redemption",
+                Duration = 142,
+                ReleaseDate = new DateTime(1995, 03, 17),
+                Description = "Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit. The film portrays the man's unique way of dealing with his new, torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2011/06/eb836f6c8e5eeb9242621a42227b21b3.jpg",
+                Rate = 4.6f
             };
-            m19.Categories = new List<Category>() { categories[0], categories[4], categories[8] };
-            m19.Directors = new List<Director>() { directors[14] };
-            m19.Actors = new List<Actor>() { actors[41], actors[42], actors[43] };
+            m19.Categories = new List<Category>() { categories[0] };
+            m19.Directors = new List<Director>() { directors[18] };
+            m19.Actors = new List<Actor>() { actors[53], actors[54], actors[55] };
             context.Movies.Add(m19);
 
             Movie m20 = new Movie()
             {
-                Title = "La La Land",
-                Duration = 128,
-                ReleaseDate = new DateTime(2016, 12, 25),
-                Description = "Aspiring actress serves lattes to movie stars in between auditions and jazz musician Sebastian scrapes by playing cocktail-party gigs in dingy bars. But as success mounts, they are faced with decisions that fray the fragile fabric of their love affair, and the dreams they worked so hard to maintain in each other threaten to rip them apart.",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2016/08/097062.jpg",
-                Rate = 4.2f
+                Title = "Schindler's List",
+                Duration = 195,
+                ReleaseDate = new DateTime(1993, 11, 13),
+                Description = "Oskar Schindler is a vainglorious and greedy German businessman who becomes an unlikely humanitarian amid the barbaric German Nazi reign when he feels compelled to turn his factory into a refuge for Jews. Based on the true story of Oskar Schindler who managed to save about 1100 Jews from being gassed at the Auschwitz concentration camp, it is a testament to the good in all of us.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2011/10/7051400748567488a5f0e28b02a0ff5c.jpg",
+                Rate = 4.6f
             };
-            m20.Categories = new List<Category>() { categories[0], categories[4], categories[8] };
-            m20.Directors = new List<Director>() { directors[14] };
-            m20.Actors = new List<Actor>() { actors[41], actors[42], actors[43] };
+            m20.Categories = new List<Category>() { categories[0] };
+            m20.Directors = new List<Director>() { directors[10] };
+            m20.Actors = new List<Actor>() { actors[56], actors[57], actors[58] };
             context.Movies.Add(m20);
 
             Movie m21 = new Movie()
             {
-                Title = "La La Land",
-                Duration = 128,
-                ReleaseDate = new DateTime(2016, 12, 25),
-                Description = "Aspiring actress serves lattes to movie stars in between auditions and jazz musician Sebastian scrapes by playing cocktail-party gigs in dingy bars. But as success mounts, they are faced with decisions that fray the fragile fabric of their love affair, and the dreams they worked so hard to maintain in each other threaten to rip them apart.",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2016/08/097062.jpg",
-                Rate = 4.2f
+                Title = "Pulp Fiction",
+                Duration = 154,
+                ReleaseDate = new DateTime(1994, 12, 14),
+                Description = "Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2011/08/cc1cac6d34dcc8b321b0f352c550262c.jpg",
+                Rate = 4.5f
             };
-            m21.Categories = new List<Category>() { categories[0], categories[4], categories[8] };
-            m21.Directors = new List<Director>() { directors[14] };
-            m21.Actors = new List<Actor>() { actors[41], actors[42], actors[43] };
+            m21.Categories = new List<Category>() { categories[0] };
+            m21.Directors = new List<Director>() { directors[19] };
+            m21.Actors = new List<Actor>() { actors[59], actors[60], actors[61] };
             context.Movies.Add(m21);
 
             Movie m22 = new Movie()
             {
-                Title = "La La Land",
-                Duration = 128,
-                ReleaseDate = new DateTime(2016, 12, 25),
-                Description = "Aspiring actress serves lattes to movie stars in between auditions and jazz musician Sebastian scrapes by playing cocktail-party gigs in dingy bars. But as success mounts, they are faced with decisions that fray the fragile fabric of their love affair, and the dreams they worked so hard to maintain in each other threaten to rip them apart.",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2016/08/097062.jpg",
-                Rate = 4.2f
+                Title = "Forrest Gump",
+                Duration = 142,
+                ReleaseDate = new DateTime(1994, 06, 23),
+                Description = "Forrest Gump is a simple man with a low I.Q. but good intentions. He is running through childhood with his best and only friend Jenny. His 'mama' teaches him the ways of life and leaves him to choose his destiny. Forrest joins the army for service in Vietnam, finding new friends called Dan and Bubba, he wins medals, creates a famous shrimp fishing fleet, inspires people to jog, starts a ping-pong craze, creates the smiley, writes bumper stickers and songs, donates to people and meets the president several times.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2012/08/37c12d5ed409f8f9966234e3659f8785.jpg",
+                Rate = 4.5f
             };
-            m22.Categories = new List<Category>() { categories[0], categories[4], categories[8] };
-            m22.Directors = new List<Director>() { directors[14] };
-            m22.Actors = new List<Actor>() { actors[41], actors[42], actors[43] };
+            m22.Categories = new List<Category>() { categories[0], categories[8] };
+            m22.Directors = new List<Director>() { directors[20] };
+            m22.Actors = new List<Actor>() { actors[31], actors[62], actors[63] };
             context.Movies.Add(m22);
 
             Movie m23 = new Movie()
             {
-                Title = "Three Billboards Outside Ebbing",
-                Duration = 115,
-                ReleaseDate = new DateTime(2018, 02, 15),
-                Description = "THREE BILLBOARDS OUTSIDE EBBING, MISSOURI is a darkly comic drama from Academy Award nominee Martin McDonagh (In Bruges). After months have passed without a culprit in her daughter's murder case, Mildred Hayes (Academy Award winner Frances McDormand) makes a bold move, painting three signs leading into her town with a controversial message directed at William Willoughby (Academy Award nominee Woody Harrelson), the town's revered chief of police. When his second-in-command Officer Dixon (Sam Rockwell), an immature mother's boy with a penchant for violence, gets involved, the battle between Mildred and Ebbing's law enforcement is only exacerbated.",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2017/03/three_billboards_outside_ebbing_missouri.jpg",
-                Rate = 4.2f
+                Title = "Inception",
+                Duration = 148,
+                ReleaseDate = new DateTime(2010, 08, 06),
+                Description = "Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction, stealing valuable secrets from deep within the subconscious during the dream state, when the mind is at its most vulnerable. Cobb's rare ability has made him a coveted player in this treacherous new world of corporate espionage, but it has also made him an international fugitive and cost him everything he has ever loved. ",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2011/06/7c49092a6e7223cebd5bd8dfd579b6e6.jpg",
+                Rate = 4.4f
             };
-            m23.Categories = new List<Category>() { categories[0], categories[4] };
-            m23.Directors = new List<Director>() { directors[3] };
-            m23.Actors = new List<Actor>() { actors[9], actors[10], actors[11] };
+            m23.Categories = new List<Category>() { categories[1], categories[3], categories[6] };
+            m23.Directors = new List<Director>() { directors[7] };
+            m23.Actors = new List<Actor>() { actors[64], actors[65], actors[66] };
             context.Movies.Add(m23);
 
             Movie m24 = new Movie()
             {
-                Title = "Three Billboards Outside Ebbing",
-                Duration = 115,
-                ReleaseDate = new DateTime(2018, 02, 15),
-                Description = "THREE BILLBOARDS OUTSIDE EBBING, MISSOURI is a darkly comic drama from Academy Award nominee Martin McDonagh (In Bruges). After months have passed without a culprit in her daughter's murder case, Mildred Hayes (Academy Award winner Frances McDormand) makes a bold move, painting three signs leading into her town with a controversial message directed at William Willoughby (Academy Award nominee Woody Harrelson), the town's revered chief of police. When his second-in-command Officer Dixon (Sam Rockwell), an immature mother's boy with a penchant for violence, gets involved, the battle between Mildred and Ebbing's law enforcement is only exacerbated.",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2017/03/three_billboards_outside_ebbing_missouri.jpg",
-                Rate = 4.2f
+                Title = "Seven",
+                Duration = 126,
+                ReleaseDate = new DateTime(1995, 12, 15),
+                Description = "A film about two homicide detectives' (Morgan Freeman and (Brad Pitt desperate hunt for a serial killer who justifies his crimes as absolution for the world's ignorance of the Seven Deadly Sins. The movie takes us from the tortured remains of one victim to the next as the sociopathic 'John Doe' (Kevin Spacey) sermonizes to Detectives Somerset and Mills -- one sin at a time. The sin of Gluttony comes first and the murderer's terrible capacity is graphically demonstrated in the dark and subdued tones characteristic of film noir.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2011/06/17bad8ab7431afe2d5fe32b8ebbfccc6.jpg",
+                Rate = 4.3f
             };
-            m24.Categories = new List<Category>() { categories[0], categories[4] };
-            m24.Directors = new List<Director>() { directors[3] };
-            m24.Actors = new List<Actor>() { actors[9], actors[10], actors[11] };
+            m24.Categories = new List<Category>() { categories[0] };
+            m24.Directors = new List<Director>() { directors[1] };
+            m24.Actors = new List<Actor>() { actors[3], actors[54], actors[67] };
             context.Movies.Add(m24);
 
             Movie m25 = new Movie()
             {
-                Title = "Three Billboards Outside Ebbing",
-                Duration = 115,
-                ReleaseDate = new DateTime(2018, 02, 15),
-                Description = "THREE BILLBOARDS OUTSIDE EBBING, MISSOURI is a darkly comic drama from Academy Award nominee Martin McDonagh (In Bruges). After months have passed without a culprit in her daughter's murder case, Mildred Hayes (Academy Award winner Frances McDormand) makes a bold move, painting three signs leading into her town with a controversial message directed at William Willoughby (Academy Award nominee Woody Harrelson), the town's revered chief of police. When his second-in-command Officer Dixon (Sam Rockwell), an immature mother's boy with a penchant for violence, gets involved, the battle between Mildred and Ebbing's law enforcement is only exacerbated.",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2017/03/three_billboards_outside_ebbing_missouri.jpg",
-                Rate = 4.2f
+                Title = "Interstellar",
+                Duration = 168,
+                ReleaseDate = new DateTime(2014, 11, 06),
+                Description = "Earth's future has been riddled by disasters, famines, and droughts. There is only one way to ensure mankind's survival: Interstellar travel. A newly discovered wormhole in the far reaches of our solar system allows a team of astronauts to go where no man has gone before, a planet that may have the right environment to sustain human life.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2014/09/interestelar_t27814_14.jpg",
+                Rate = 4.3f
             };
-            m25.Categories = new List<Category>() { categories[0], categories[4] };
-            m25.Directors = new List<Director>() { directors[3] };
-            m25.Actors = new List<Actor>() { actors[9], actors[10], actors[11] };
+            m25.Categories = new List<Category>() { categories[0], categories[3], categories[6] };
+            m25.Directors = new List<Director>() { directors[7] };
+            m25.Actors = new List<Actor>() { actors[68], actors[69], actors[70] };
             context.Movies.Add(m25);
 
             Movie m26 = new Movie()
             {
-                Title = "Three Billboards Outside Ebbing",
-                Duration = 115,
-                ReleaseDate = new DateTime(2018, 02, 15),
-                Description = "THREE BILLBOARDS OUTSIDE EBBING, MISSOURI is a darkly comic drama from Academy Award nominee Martin McDonagh (In Bruges). After months have passed without a culprit in her daughter's murder case, Mildred Hayes (Academy Award winner Frances McDormand) makes a bold move, painting three signs leading into her town with a controversial message directed at William Willoughby (Academy Award nominee Woody Harrelson), the town's revered chief of police. When his second-in-command Officer Dixon (Sam Rockwell), an immature mother's boy with a penchant for violence, gets involved, the battle between Mildred and Ebbing's law enforcement is only exacerbated.",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2017/03/three_billboards_outside_ebbing_missouri.jpg",
-                Rate = 4.2f
+                Title = "American History X",
+                Duration = 119,
+                ReleaseDate = new DateTime(1998, 10, 30),
+                Description = "Derek Vineyard is paroled after serving 3 years in prison for brutally killing two black men who tried to break into/steal his truck. Through his brother, Danny Vineyard's narration, we learn that before going to prison, Derek was a skinhead and the leader of a violent white supremacist gang that committed acts of racial crime throughout L.A. and his actions greatly influenced Danny.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2017/08/MPW-48008.jpg",
+                Rate = 4.4f
             };
-            m26.Categories = new List<Category>() { categories[0], categories[4] };
-            m26.Directors = new List<Director>() { directors[3] };
-            m26.Actors = new List<Actor>() { actors[9], actors[10], actors[11] };
+            m26.Categories = new List<Category>() { categories[0] };
+            m26.Directors = new List<Director>() { directors[21] };
+            m26.Actors = new List<Actor>() { actors[4], actors[71], actors[72] };
             context.Movies.Add(m26);
 
             Movie m27 = new Movie()
             {
-                Title = "Lion",
-                Duration = 118,
-                ReleaseDate = new DateTime(2017, 01, 06),
-                Description = "In 1986, Saroo was a five-year-old child in India of a poor but happy rural family. On a trip with his brother, Saroo soon finds himself alone and trapped in a moving decommissioned passenger train that takes him to Calcutta, 1500 miles away from home. Now totally lost in an alien urban environment and too young to identify either himself or his home to the authorities, Saroo struggles to survive as a street child until he is sent to an orphanage. Soon, Saroo is selected to be adopted by the Brierley family in Tasmania, where he grows up in a loving, prosperous home. However, for all his material good fortune, Saroo finds himself plagued by his memories of his lost family in his adulthood and tries to search for them even as his guilt drives him to hide this quest from his adoptive parents and his girlfriend. Only when he has an epiphany does he realize not only the answers he needs, but also the steadfast love that he has always had with all his loved ones in both worlds.",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2017/02/Sem_t%C3%ADtulo.jpg",
-                Rate = 4.3f
+                Title = "Psycho",
+                Duration = 109,
+                ReleaseDate = new DateTime(1960, 08, 25),
+                Description = "Phoenix officeworker Marion Crane is fed up with the way life has treated her. She has to meet her lover Sam in lunch breaks and they cannot get married because Sam has to give most of his money away in alimony. One Friday Marion is trusted to bank $40,000 by her employer. Seeing the opportunity to take the money and start a new life, Marion leaves town and heads towards Sam's California store. Tired after the long drive and caught in a storm, she gets off the main highway and pulls into The Bates Motel.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2010/08/428e08aedd545846abd1a20271a163e3.jpg",
+                Rate = 4.4f
             };
-            m27.Categories = new List<Category>() { categories[0] };
-            m27.Directors = new List<Director>() { directors[15] };
-            m27.Actors = new List<Actor>() { actors[44], actors[45], actors[46] };
+            m27.Categories = new List<Category>() { categories[9], categories[10] };
+            m27.Directors = new List<Director>() { directors[22] };
+            m27.Actors = new List<Actor>() { actors[73], actors[74], actors[75] };
             context.Movies.Add(m27);
 
             Movie m28 = new Movie()
             {
-                Title = "Lion",
-                Duration = 118,
-                ReleaseDate = new DateTime(2017, 01, 06),
-                Description = "In 1986, Saroo was a five-year-old child in India of a poor but happy rural family. On a trip with his brother, Saroo soon finds himself alone and trapped in a moving decommissioned passenger train that takes him to Calcutta, 1500 miles away from home. Now totally lost in an alien urban environment and too young to identify either himself or his home to the authorities, Saroo struggles to survive as a street child until he is sent to an orphanage. Soon, Saroo is selected to be adopted by the Brierley family in Tasmania, where he grows up in a loving, prosperous home. However, for all his material good fortune, Saroo finds himself plagued by his memories of his lost family in his adulthood and tries to search for them even as his guilt drives him to hide this quest from his adoptive parents and his girlfriend. Only when he has an epiphany does he realize not only the answers he needs, but also the steadfast love that he has always had with all his loved ones in both worlds.",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2017/02/Sem_t%C3%ADtulo.jpg",
+                Title = "Rear Window",
+                Duration = 112,
+                ReleaseDate = new DateTime(1954, 08, 25),
+                Description = "Professional photographer L.B. 'Jeff' Jefferies breaks his leg while getting an action shot at an auto race. Confined to his New York apartment, he spends his time looking out of the rear window observing the neighbors. He begins to suspect that a man across the courtyard may have murdered his wife. Jeff enlists the help of his high society fashion-consultant girlfriend Lisa Freemont and his visiting nurse Stella to investigate.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2011/06/bee14bde4cbb7e1aa20d92c106d5f230.jpg",
                 Rate = 4.3f
             };
-            m28.Categories = new List<Category>() { categories[0] };
-            m28.Directors = new List<Director>() { directors[15] };
-            m28.Actors = new List<Actor>() { actors[44], actors[45], actors[46] };
+            m28.Categories = new List<Category>() { categories[9] };
+            m28.Directors = new List<Director>() { directors[22] };
+            m28.Actors = new List<Actor>() { actors[76], actors[77], actors[78] };
             context.Movies.Add(m28);
-
 
             Movie m29 = new Movie()
             {
-                Title = "Lion",
-                Duration = 118,
-                ReleaseDate = new DateTime(2017, 01, 06),
-                Description = "In 1986, Saroo was a five-year-old child in India of a poor but happy rural family. On a trip with his brother, Saroo soon finds himself alone and trapped in a moving decommissioned passenger train that takes him to Calcutta, 1500 miles away from home. Now totally lost in an alien urban environment and too young to identify either himself or his home to the authorities, Saroo struggles to survive as a street child until he is sent to an orphanage. Soon, Saroo is selected to be adopted by the Brierley family in Tasmania, where he grows up in a loving, prosperous home. However, for all his material good fortune, Saroo finds himself plagued by his memories of his lost family in his adulthood and tries to search for them even as his guilt drives him to hide this quest from his adoptive parents and his girlfriend. Only when he has an epiphany does he realize not only the answers he needs, but also the steadfast love that he has always had with all his loved ones in both worlds.",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2017/02/Sem_t%C3%ADtulo.jpg",
+                Title = "The Pianist",
+                Duration = 150,
+                ReleaseDate = new DateTime(2002, 03, 07),
+                Description = "In this adaptation of the autobiography 'The Pianist: The Extraordinary True Story of One Man's Survival in Warsaw, 1939-1945, Wladyslaw Szpilman, a Polish Jewish radio station pianist, sees Warsaw change gradually as World War II begins. Szpilman is forced into the Warsaw Ghetto, but is later separated from his family during Operation Reinhard. From this time until the concentration camp prisoners are released, Szpilman hides in various locations among the ruins of Warsaw.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2011/06/4c1987a96becd394e5394b06f09d8e0d_1.jpg",
                 Rate = 4.3f
             };
             m29.Categories = new List<Category>() { categories[0] };
-            m29.Directors = new List<Director>() { directors[15] };
-            m29.Actors = new List<Actor>() { actors[44], actors[45], actors[46] };
+            m29.Directors = new List<Director>() { directors[23] };
+            m29.Actors = new List<Actor>() { actors[79], actors[80], actors[81] };
             context.Movies.Add(m29);
 
             Movie m30 = new Movie()
             {
-                Title = "Moonlight",
-                Duration = 111,
-                ReleaseDate = new DateTime(2017, 12, 22),
-                Description = "Three time periods - young adolescence, mid-teen and young adult - in the life of black-American Chiron is presented. When a child, Chiron lives with his single, crack addict mother Paula in a crime ridden neighborhood in Miami. Chiron is a shy, withdrawn child largely due to his small size and being neglected by his mother, who is more concerned about getting her fixes and satisfying her carnal needs than taking care of him. Because of these issues, Chiron is bullied, the slurs hurled at him which he doesn't understand beyond knowing that they are meant to be hurtful. Besides his same aged Cuban-American friend Kevin, Chiron is given what little guidance he has in life from a neighborhood drug dealer named Juan, who can see that he is neglected, and Juan's caring girlfriend Teresa, whose home acts as a sanctuary away from the bullies and away from Paula's abuse. ",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2017/06/moonlight_ver2_xxlg.jpg",
-                Rate = 4.1f
+                Title = "The Departed",
+                Duration = 151,
+                ReleaseDate = new DateTime(2006, 11, 10),
+                Description = "In South Boston, the state police force is waging war on Irish-American organized crime. Young undercover cop Billy Costigan is assigned to infiltrate the mob syndicate run by gangland chief Frank Costello. While Billy quickly gains Costello's confidence, Colin Sullivan, a hardened young criminal who has infiltrated the state police as an informer for the syndicate is rising to a position of power in the Special Investigation Unit.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2011/06/d8a4b6c4b558f32558a77102ce580338.jpg",
+                Rate = 4.2f
             };
             m30.Categories = new List<Category>() { categories[0] };
-            m30.Directors = new List<Director>() { directors[12] };
-            m30.Actors = new List<Actor>() { actors[36], actors[37], actors[38] };
+            m30.Directors = new List<Director>() { directors[24] };
+            m30.Actors = new List<Actor>() { actors[64], actors[82], actors[83] };
             context.Movies.Add(m30);
 
             Movie m31 = new Movie()
             {
-                Title = "Moonlight",
-                Duration = 111,
-                ReleaseDate = new DateTime(2017, 12, 22),
-                Description = "Three time periods - young adolescence, mid-teen and young adult - in the life of black-American Chiron is presented. When a child, Chiron lives with his single, crack addict mother Paula in a crime ridden neighborhood in Miami. Chiron is a shy, withdrawn child largely due to his small size and being neglected by his mother, who is more concerned about getting her fixes and satisfying her carnal needs than taking care of him. Because of these issues, Chiron is bullied, the slurs hurled at him which he doesn't understand beyond knowing that they are meant to be hurtful. Besides his same aged Cuban-American friend Kevin, Chiron is given what little guidance he has in life from a neighborhood drug dealer named Juan, who can see that he is neglected, and Juan's caring girlfriend Teresa, whose home acts as a sanctuary away from the bullies and away from Paula's abuse. ",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2017/06/moonlight_ver2_xxlg.jpg",
-                Rate = 4.1f
+                Title = "Whiplash",
+                Duration = 106,
+                ReleaseDate = new DateTime(2014, 01, 08),
+                Description = "A young and talented drummer attending a prestigious music academy finds himself under the wing of the most respected professor at the school, one who does not hold back on abuse towards his students. The two form an odd relationship as the student wants to achieve greatness, and the professor pushes him.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2014/08/whiplash_t90046.jpg",
+                Rate = 4.4f
             };
             m31.Categories = new List<Category>() { categories[0] };
-            m31.Directors = new List<Director>() { directors[12] };
-            m31.Actors = new List<Actor>() { actors[36], actors[37], actors[38] };
+            m31.Directors = new List<Director>() { directors[25] };
+            m31.Actors = new List<Actor>() { actors[84], actors[85], actors[86] };
             context.Movies.Add(m31);
 
             Movie m32 = new Movie()
             {
-                Title = "Moonlight",
-                Duration = 111,
-                ReleaseDate = new DateTime(2017, 12, 22),
-                Description = "Three time periods - young adolescence, mid-teen and young adult - in the life of black-American Chiron is presented. When a child, Chiron lives with his single, crack addict mother Paula in a crime ridden neighborhood in Miami. Chiron is a shy, withdrawn child largely due to his small size and being neglected by his mother, who is more concerned about getting her fixes and satisfying her carnal needs than taking care of him. Because of these issues, Chiron is bullied, the slurs hurled at him which he doesn't understand beyond knowing that they are meant to be hurtful. Besides his same aged Cuban-American friend Kevin, Chiron is given what little guidance he has in life from a neighborhood drug dealer named Juan, who can see that he is neglected, and Juan's caring girlfriend Teresa, whose home acts as a sanctuary away from the bullies and away from Paula's abuse. ",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2017/06/moonlight_ver2_xxlg.jpg",
-                Rate = 4.1f
+                Title = "Memento",
+                Duration = 113,
+                ReleaseDate = new DateTime(2000, 08, 31),
+                Description = "Memento chronicles two separate stories of Leonard, an ex-insurance investigator who can no longer build new memories, as he attempts to find the murderer of his wife, which is the last thing he remembers. One story line moves forward in time while the other tells the story backwards revealing more each time.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2011/09/1deef33fa858cc141e7a4f954f9c1fdd.jpg",
+                Rate = 4.2f
             };
-            m32.Categories = new List<Category>() { categories[0] };
-            m32.Directors = new List<Director>() { directors[12] };
-            m32.Actors = new List<Actor>() { actors[36], actors[37], actors[38] };
+            m32.Categories = new List<Category>() { categories[9] };
+            m32.Directors = new List<Director>() { directors[7] };
+            m32.Actors = new List<Actor>() { actors[87], actors[88], actors[89] };
             context.Movies.Add(m32);
 
             Movie m33 = new Movie()
             {
-                Title = "Moonlight",
-                Duration = 111,
-                ReleaseDate = new DateTime(2017, 12, 22),
-                Description = "Three time periods - young adolescence, mid-teen and young adult - in the life of black-American Chiron is presented. When a child, Chiron lives with his single, crack addict mother Paula in a crime ridden neighborhood in Miami. Chiron is a shy, withdrawn child largely due to his small size and being neglected by his mother, who is more concerned about getting her fixes and satisfying her carnal needs than taking care of him. Because of these issues, Chiron is bullied, the slurs hurled at him which he doesn't understand beyond knowing that they are meant to be hurtful. Besides his same aged Cuban-American friend Kevin, Chiron is given what little guidance he has in life from a neighborhood drug dealer named Juan, who can see that he is neglected, and Juan's caring girlfriend Teresa, whose home acts as a sanctuary away from the bullies and away from Paula's abuse. ",
-                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2017/06/moonlight_ver2_xxlg.jpg",
-                Rate = 4.1f
+                Title = "The Prestige",
+                Duration = 130,
+                ReleaseDate = new DateTime(2006, 11, 02),
+                Description = "In the end of the Nineteenth Century, in London, Robert Angier, his beloved wife Julia McCullough and Alfred Borden are friends and assistants of a magician. When Julia accidentally dies during a performance, Robert blames Alfred for her death and they become enemies. Both become famous and rival magicians, sabotaging the performance of the other on the stage. ",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2011/06/183439621abd3d5d8dc791956715397b.jpg",
+                Rate = 4.2f
             };
             m33.Categories = new List<Category>() { categories[0] };
-            m33.Directors = new List<Director>() { directors[12] };
-            m33.Actors = new List<Actor>() { actors[36], actors[37], actors[38] };
+            m33.Directors = new List<Director>() { directors[7] };
+            m33.Actors = new List<Actor>() { actors[90], actors[18], actors[91] };
             context.Movies.Add(m33);
+
+            Movie m34 = new Movie()
+            {
+                Title = "The Shining",
+                Duration = 146,
+                ReleaseDate = new DateTime(1980, 12, 25),
+                Description = "Signing a contract, Jack Torrance, a normal writer and former teacher agrees to take care of a hotel which has a long, violent past that puts everyone in the hotel in a nervous situation. While Jack slowly gets more violent and angry of his life, his son, Danny, tries to use a special talent.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2010/12/5ecbe41ded5098d2dc80abdf835dfba0.jpg",
+                Rate = 4.3f
+            };
+            m34.Categories = new List<Category>() { categories[0],categories[10] };
+            m34.Directors = new List<Director>() { directors[26] };
+            m34.Actors = new List<Actor>() { actors[83], actors[92], actors[93] };
+            context.Movies.Add(m34);
+
+            Movie m35 = new Movie()
+            {
+                Title = "American Beauty",
+                Duration = 121,
+                ReleaseDate = new DateTime(1999, 12, 02),
+                Description = "After his death sometime in his forty-third year, suburbanite Lester Burnham tells of the last few weeks of his life, during which he had no idea of his imminent passing. He is a husband to real estate agent Carolyn Burnham and father to high school student Janie Burnham. Although Lester and Carolyn once loved each other, they now merely tolerate each other.",
+                ImageUrl = "https://cdn.fstatic.com/media/movies/covers/2011/07/a7a2b44a16026c798c23af225a2b74d4.jpg",
+                Rate = 4.1f
+            };
+            m35.Categories = new List<Category>() { categories[0] };
+            m35.Directors = new List<Director>() { directors[27] };
+            m35.Actors = new List<Actor>() { actors[67], actors[94], actors[95] };
+            context.Movies.Add(m35);
+
+            
 
             //create movie watched
             context.MoviesWatched.Add(new MovieWatched() { User = users[1], Movie = m1, Rate = 4.5f, Date = new DateTime(2018, 03, 06) });
@@ -590,7 +675,7 @@ namespace FilMoviesAPI
             context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m16, Favorite = false, Date = new DateTime(2018, 03, 05) });
             context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m33, Favorite = false, Date = new DateTime(2018, 03, 05) });
             context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m32, Favorite = false, Date = new DateTime(2018, 03, 05) });
-            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m28, Favorite = false, Date = new DateTime(2018, 03, 05) });
+            context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m28, Favorite = true, Date = new DateTime(2018, 03, 05) });
             context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m5, Favorite = false, Date = new DateTime(2018, 03, 05) });
             context.MoviesWatched.Add(new MovieWatched() { User = users[2], Movie = m22, Favorite = false, Date = new DateTime(2018, 03, 05) });
 
