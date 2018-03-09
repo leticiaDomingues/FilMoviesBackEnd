@@ -48,20 +48,6 @@ namespace FilMoviesAPI.Repositories
             }
 
             return reviews;
-
-            /*return FilMoviesContext.Reviews    
-                    .Join(FilMoviesContext.MoviesWatched, 
-                            r => r.MovieID,        
-                            mw => mw.MovieID,  
-                        (r, mw) => new CompleteReview {
-                            Review = r,
-                            Favorite = mw.Favorite,
-                            Rate = mw.Rate,
-                            User = mw.User
-                        })
-                    .Where(rmw => rmw.Review.MovieID == MovieID && rmw.User.Username == rmw.Review.Username)
-                    .OrderByDescending(r => r.Review.Date)
-                    .ToList();     */
         }
 
         public int countReviewsByMovie(int MovieID)

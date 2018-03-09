@@ -1,5 +1,6 @@
 ﻿using FilMoviesAPI.Model;
 using FilMoviesAPI.Repositories;
+using FilMoviesBLL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,303 +11,202 @@ using System.Web.Http.Cors;
 
 namespace FilMoviesAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MovieController : ApiController
     {
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Get(int id)
         {
-            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            try
             {
-                try
-                {
-                    Movie movie = unityOfWork.Movies.Get(id);
-                    return Request.CreateResponse(HttpStatusCode.OK, movie);
-                }
-                catch (KeyNotFoundException)
-                {
-                    var mensagem = string.Format("O filme {0} não foi encontrado.", id);
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, MovieBLL.Get(id));
+            }
+            catch (KeyNotFoundException)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Get()
         {
-            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            try
             {
-                try
-                {
-                    ICollection<Movie> movies = (ICollection<Movie>) unityOfWork.Movies.GetAll();
-                    return Request.CreateResponse(HttpStatusCode.OK, movies);
-                }
-                catch (KeyNotFoundException)
-                {
-                    var mensagem = string.Format("Erro");
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, MovieBLL.GetAll());
+            }
+            catch (KeyNotFoundException)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/random")]
         public HttpResponseMessage GetRandom()
         {
-            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            try
             {
-                try
-                {
-                    IEnumerable<Movie> movies = unityOfWork.Movies.GetRandomMovies();
-                    return Request.CreateResponse(HttpStatusCode.OK, movies);
-                }
-                catch (KeyNotFoundException)
-                {
-                    var mensagem = string.Format("Erro");
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, MovieBLL.GetRandom());
+            }
+            catch (KeyNotFoundException)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/random")]
         public HttpResponseMessage GetRandom([FromUri] int qty)
         {
-            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            try
             {
-                try
-                {
-                    IEnumerable<Movie> movies = unityOfWork.Movies.GetRandomMovies(qty);
-                    return Request.CreateResponse(HttpStatusCode.OK, movies);
-                }
-                catch (KeyNotFoundException)
-                {
-                    var mensagem = string.Format("Erro");
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, MovieBLL.GetRandom(qty));
+            }
+            catch (KeyNotFoundException)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/best/rate")]
         public HttpResponseMessage GetBestRated([FromUri] int page)
         {
-            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            try
             {
-                try
+                return Request.CreateResponse(HttpStatusCode.OK, new
                 {
-                    IEnumerable<Movie> movies = unityOfWork.Movies.GetBestMovies(page);
-                    int howMany = unityOfWork.Movies.CountMovies();
-                    var result = new
-                    {
-                        movies,
-                        page,
-                        count = howMany
-                    };
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                catch (KeyNotFoundException)
-                {
-                    var mensagem = string.Format("Erro");
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
-                }
+                    movies = MovieBLL.GetBestRated(page),
+                    page,
+                    count = MovieBLL.howManyMovies()
+                });
+            }
+            catch (KeyNotFoundException)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/new")]
         public HttpResponseMessage GetNewMovies([FromUri] int page)
         {
-            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            try
             {
-                try
+                return Request.CreateResponse(HttpStatusCode.OK, new
                 {
-                    IEnumerable<Movie> movies = unityOfWork.Movies.GetNewMovies(page);
-                    int howMany = unityOfWork.Movies.CountMovies();
-                    var result = new
-                    {
-                        movies,
-                        page,
-                        count = howMany
-                    };
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                catch (KeyNotFoundException)
-                {
-                    var mensagem = string.Format("Erro");
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
-                }
+                    movies = MovieBLL.GetNewMovies(page),
+                    page,
+                    count = MovieBLL.howManyMovies()
+                });
+            }
+            catch (KeyNotFoundException)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
-
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/category")]
         public HttpResponseMessage GetByCategory([FromUri] int categoryId, [FromUri] int page)
         {
-            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            try
             {
-                try
-                {
-                    IEnumerable<Movie> movies = unityOfWork.Movies.GetMoviesByCategory(categoryId, page);
-                    int howMany = movies.Count();
-                    var c = unityOfWork.Categories.Get(categoryId);
-                    var result = new
-                    {
-                        movies = movies.Skip((page - 1) * 18).Take(18).Select(m => new {
-                            m.MovieID,
-                            m.Title,
-                            m.ReleaseDate,
-                            m.ImageUrl,
-                            m.Rate
-                        }),
-                        page,
-                        count = howMany,
-                        category = c.Name
-                    };
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                catch (KeyNotFoundException)
-                {
-                    var mensagem = string.Format("Erro");
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, new {
+                    movies = MovieBLL.GetByCategory(categoryId, page).Select(m => new {
+                        m.MovieID,
+                        m.Title,
+                        m.ReleaseDate,
+                        m.ImageUrl,
+                        m.Rate
+                    }),
+                    page,
+                    count = MovieBLL.CountMoviesByCategory(categoryId),
+                    category = CategoryBLL.Get(categoryId).Name
+                });
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/query")]
         public HttpResponseMessage GetByQuery([FromUri] string query, [FromUri] int page)
         {
-            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            try
             {
-                try
-                {
-                    IEnumerable<Movie> movies = unityOfWork.Movies.GetMoviesByQuery(query, page);
-                    int howMany = movies.Count();
-                    var result = new
-                    {
-                        movies = movies.Skip((page - 1) * 18).Take(18).Select(m => new {
-                            m.MovieID,
-                            m.Title,
-                            m.ReleaseDate,
-                            m.ImageUrl,
-                            m.Rate
-                        }),
-                        page,
-                        count = howMany,
-                        query
-                    };
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                catch (KeyNotFoundException)
-                {
-                    var mensagem = string.Format("Erro");
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, new {
+                    movies = MovieBLL.GetByQuery(query,page).Select(m => new {
+                        m.MovieID,
+                        m.Title,
+                        m.ReleaseDate,
+                        m.ImageUrl,
+                        m.Rate
+                    }),
+                    page,
+                    count = MovieBLL.CountMoviesByQuery(query),
+                    query
+                });
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/user")]
         public HttpResponseMessage GetWatchedByUsername([FromUri] string username, [FromUri] int page)
         {
-            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            try
             {
-                try
-                {
-                    ICollection<MovieWatched> movies = (ICollection<MovieWatched>)unityOfWork.Movies.GetWatchedMovies(username, page);
-                    int howMany = movies.Count();
-                    var result = new
-                    {
-                        movies = movies.Skip((page - 1) * 18).Take(18),
-                        page,
-                        count = howMany,
-                        username
-                    };
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                catch (KeyNotFoundException)
-                {
-                    var mensagem = string.Format("Erro");
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, new {
+                    movies = MovieBLL.GetWatchedByUsername(username, page),
+                    page,
+                    count = MovieBLL.CountWatchedMoviesByUser(username),
+                    username
+                });
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/favorite")]
         public HttpResponseMessage GetFavoriteByUser([FromUri] string username, [FromUri] int page)
         {
-            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            try
             {
-                try
-                {
-                    ICollection<MovieWatched> movies = (ICollection<MovieWatched>)unityOfWork.Movies.GetFavoriteMovies(username);
-                    int howMany = movies.Count();
-                    var result = new
-                    {
-                        movies = movies.Skip((page - 1) * 18).Take(18),
-                        page,
-                        count = howMany,
-                        username
-                    };
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                catch (KeyNotFoundException)
-                {
-                    var mensagem = string.Format("Erro");
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, new {
+                    movies = MovieBLL.GetFavoriteByUser(username,page),
+                    page,
+                    count = MovieBLL.CountFavoriteMoviesByUser(username),
+                    username
+                });
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/mostWatched")]
         public HttpResponseMessage GetMostWatchedMovies()
         {
-            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            try
             {
-                try
-                {
-                    ICollection<Movie> movies = (ICollection<Movie>)unityOfWork.Movies.GetMostWatchedMovies();
-                    return Request.CreateResponse(HttpStatusCode.OK, movies);
-                }
-                catch (KeyNotFoundException)
-                {
-                    var mensagem = string.Format("Erro");
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, MovieBLL.GetMostWatchedMovies());
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/movie/mostFavorite")]
         public HttpResponseMessage GetMostFavoriteMovies()
         {
-            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            try
             {
-                try
-                {
-                    ICollection<Movie> movies = (ICollection<Movie>)unityOfWork.Movies.GetMostFavoriteMovies();
-                    return Request.CreateResponse(HttpStatusCode.OK, movies);
-                }
-                catch (KeyNotFoundException)
-                {
-                    var mensagem = string.Format("Erro");
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, MovieBLL.GetMostFavoriteMovies());
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
     }

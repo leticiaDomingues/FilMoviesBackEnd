@@ -28,17 +28,12 @@ namespace FilMoviesAPI.Repositories
 
         public User Login(User user)
         {
-            try {
-                var password = Encryption.sha256(user.Password);
-                User userDB = FilMoviesContext.Users.Where(u => 
-                    u.Username.Equals(user.Username) && 
-                    u.Password.Equals(password)).First();
-                userDB.Password = null;
-                return userDB;
-            } catch (Exception e)
-            {
-                return null;
-            }
+            var password = Encryption.sha256(user.Password);
+            User userDB = FilMoviesContext.Users.Where(u => 
+                u.Username.Equals(user.Username) && 
+                u.Password.Equals(password)).FirstOrDefault();
+            if(userDB != null )userDB.Password = null;
+            return userDB;
         }
 
         User IUserRepository.Add(User user)

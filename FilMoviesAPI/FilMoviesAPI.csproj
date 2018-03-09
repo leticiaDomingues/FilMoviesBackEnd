@@ -122,6 +122,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FilMoviesBLL\FilMoviesBLL.csproj">
+      <Project>{307e3eef-6586-4db1-adb0-a28c02697a6d}</Project>
+      <Name>FilMoviesBLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FilMoviesEF\FilMoviesEF.csproj">
       <Project>{2b457705-211b-4ec4-9919-b0f530211bad}</Project>
       <Name>FilMoviesEF</Name>

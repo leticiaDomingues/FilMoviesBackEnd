@@ -1,5 +1,6 @@
 ﻿using FilMoviesAPI.Model;
 using FilMoviesAPI.Repositories;
+using FilMoviesBLL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ using System.Web.Http.Cors;
 
 namespace FilMoviesAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ReviewController : ApiController
     {
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("api/review/movie")]
         public HttpResponseMessage GetReviewsByMovie([FromUri] int MovieId, [FromUri] int page)
         {
@@ -20,34 +21,34 @@ namespace FilMoviesAPI.Controllers
             {
                 try
                 {
-                    IEnumerable<CompleteReview> reviews = unityOfWork.Reviews.GetReviewsByMovie(MovieId, page);
-                    int howMany = unityOfWork.Reviews.countReviewsByMovie(MovieId);
-                    var result = new
-                    {
-                        reviews,
+                    ReviewBLL reviewBLL = new ReviewBLL();
+                    return Request.CreateResponse(HttpStatusCode.OK, new {
+                        reviews = reviewBLL.GetReviewsByMovie(MovieId, page),
                         page,
-                        count = howMany
-                    };
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                        count = reviewBLL.howManyReviewsByMovie
+                    });
                 }
-                catch (KeyNotFoundException)
+                catch (Exception)
                 {
-                    var mensagem = string.Format("Erro");
-                    var error = new HttpError(mensagem);
-                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError);
                 }
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Post([FromBody] Review r)
         {
             using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
             {
-                unityOfWork.Reviews.Add(r);
-                unityOfWork.Complete();
-
-                return Request.CreateResponse(HttpStatusCode.Created);
+                try
+                {
+                    ReviewBLL reviewBLL = new ReviewBLL();
+                    reviewBLL.createReview(r);
+                    return Request.CreateResponse(HttpStatusCode.Created);
+                }
+                catch (Exception)
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                }
             }               
         }
 
