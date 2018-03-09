@@ -125,7 +125,7 @@ namespace FilMoviesAPI
                 new Actor() { Name = "Forest Whitaker" },         //actors[49]
                 new Actor() { Name = "Jacob Tremblay" },          //actors[50]
                 new Actor() { Name = "Owen Wilson" },             //actors[51]
-                new Actor() { Name = "Izabela Vidovic" }          //actors[52]
+                new Actor() { Name = "Izabela Vidovic" },          //actors[52]
                 new Actor() { Name = "Tim Robbins" },             //actors[53]
                 new Actor() { Name = "Morgan Freeman" },          //actors[54]
                 new Actor() { Name = "Bob Gunton" },              //actors[55]

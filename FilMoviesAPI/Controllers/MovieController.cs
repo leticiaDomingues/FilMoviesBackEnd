@@ -71,6 +71,26 @@ namespace FilMoviesAPI.Controllers
         }
 
         [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+        [Route("api/movie/random")]
+        public HttpResponseMessage GetRandom([FromUri] int qty)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                try
+                {
+                    IEnumerable<Movie> movies = unityOfWork.Movies.GetRandomMovies(qty);
+                    return Request.CreateResponse(HttpStatusCode.OK, movies);
+                }
+                catch (KeyNotFoundException)
+                {
+                    var mensagem = string.Format("Erro");
+                    var error = new HttpError(mensagem);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, error);
+                }
+            }
+        }
+
+        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
         [Route("api/movie/best/rate")]
         public HttpResponseMessage GetBestRated([FromUri] int page)
         {
