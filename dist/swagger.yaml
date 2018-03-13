@@ -1,0 +1,591 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "Swagger FilMovies"
+host: "localhost:62317"
+basePath: "/api"
+tags:
+- name: "movie"
+- name: "category"
+- name: "review"
+- name: "user"
+- name: "moviewatched"
+  
+schemes:
+- "http"
+
+paths:
+  /movie:
+    get:
+      tags:
+      - "movie"
+      summary: "Get all movies"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Movie"
+        500:
+          description: "Internal server error"
+
+  /movie/{movieId}:
+    get:
+      tags:
+      - "movie"
+      summary: "Get movie info by id"
+      parameters:
+      - name: "movieId"
+        in: "path"
+        description: "ID of movie to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            items:
+              $ref: "#/definitions/Movie"
+        401:
+          description: "Not found"
+
+  /movie/random:
+    get:
+      tags:
+      - "movie"
+      summary: "Get 32 random movies"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/Movie"
+          500:
+            description: "Internal server error"
+  
+  /movie/best/rate:
+    get:
+      tags:
+      - "movie"
+      summary: "Get top 18 best rated movies (according to the requested page)"
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "Pagination variable"
+        required: true
+        type: "integer"
+        format: "int64"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/Movie"
+          500:
+            description: "Internal server error"
+          
+  /movie/new:
+    get:
+      tags:
+      - "movie"
+      summary: "Get top 18 last released movies (according to the requested page)"
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "Pagination variable"
+        required: true
+        type: "integer"
+        format: "int64"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/Movie"
+          500:
+            description: "Internal server error"
+            
+  /movie/category:
+    get:
+      tags:
+      - "movie"
+      summary: "Get top 18 movies by category (according to the requested page)"
+      parameters:
+      - name: "categoryId"
+        in: "query"
+        description: "Id of the requested category"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "page"
+        in: "query"
+        description: "Pagination variable"
+        required: true
+        type: "integer"
+        format: "int64"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/Movie"
+          500:
+            description: "Internal server error"
+            
+  /movie/query:
+    get:
+      tags:
+      - "movie"
+      summary: "Get top 18 movies that matches the requested query (according to the requested page)"
+      parameters:
+      - name: "query"
+        in: "query"
+        description: "Query to match movie title, category, director and actors"
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        description: "Pagination variable"
+        required: true
+        type: "integer"
+        format: "int64"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/Movie"
+          500:
+            description: "Internal server error"
+            
+  /movie/user:
+    get:
+      tags:
+      - "movie"
+      summary: "Get top 18 movies watched by user (according to the requested page)"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "Username variable"
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        description: "Pagination variable"
+        required: true
+        type: "integer"
+        format: "int64"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/Movie"
+          500:
+            description: "Internal server error"
+            
+  /movie/favorite:
+    get:
+      tags:
+      - "movie"
+      summary: "Get top 18 favorite movies by user (according to the requested page)"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "Username variable"
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        description: "Pagination variable"
+        required: true
+        type: "integer"
+        format: "int64"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/Movie"
+          500:
+            description: "Internal server error"
+            
+  /movie/mostWatched:
+    get:
+      tags:
+      - "movie"
+      summary: "Get top 6 most watched movies"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/Movie"
+          500:
+            description: "Internal server error"
+            
+  /movie/mostFavorite:
+    get:
+      tags:
+      - "movie"
+      summary: "Get top 6 most favorite movies"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/Movie"
+          500:
+            description: "Internal server error"
+            
+  /category:
+    get:
+      tags:
+      - "category"
+      summary: "Get all categories"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Category"
+        500:
+          description: "Internal server error"
+
+  /category/{categoryId}:
+    get:
+      tags:
+      - "category"
+      summary: "Get category info by id"
+      parameters:
+      - name: "categoryId"
+        in: "path"
+        description: "ID of category to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            items:
+              $ref: "#/definitions/Category"
+        401:
+          description: "Not found"
+  
+  /review:
+    post:
+      tags:
+      - "review"
+      summary: "Add a new review to movie"
+      parameters:
+      - name: "Review"
+        in: "body"
+        description: "Review to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/Review"
+      consumes:
+      - "application/json"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+          500:
+            description: "Internal server error"
+            
+  /review/movie:
+    get:
+      tags:
+      - "review"
+      summary: "Get top 3 reviews by movie (according to the requested page)"
+      parameters:
+      - name: "MovieId"
+        in: "query"
+        description: "Id of the requested movie"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "page"
+        in: "query"
+        description: "Pagination variable"
+        required: true
+        type: "integer"
+        format: "int64"
+      produces:
+        - "application/json"
+      responses:
+          201:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/Review"
+          500:
+            description: "Internal server error"
+            
+  /user:
+    post:
+      tags:
+      - "user"
+      summary: "Add a new user to DB"
+      parameters:
+      - name: "User"
+        in: "body"
+        description: "User to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      consumes:
+      - "application/json"
+      produces:
+        - "application/json"
+      responses:
+          201:
+            description: "successful operation"
+          500:
+            description: "Internal server error"
+            
+  /user/login:
+    post:
+      tags:
+      - "user"
+      summary: "Try to log user in the application"
+      parameters:
+      - name: "User"
+        in: "body"
+        description: "User trying to authenticate"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+          500:
+            description: "Internal server error"
+            
+  /moviewatched:
+    post:
+      tags:
+      - "moviewatched"
+      summary: "Add a record in DB showing that the user watched the movie"
+      parameters:
+      - name: "MovieWatched"
+        in: "body"
+        description: "Watched movie to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/MovieWatched"
+      consumes:
+      - "application/json"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/MovieWatched"
+          500:
+            description: "Internal server error"
+            
+    get:
+      tags:
+      - "moviewatched"
+      summary: "Get info (fav, rate, date) from a movie watched"
+      parameters:
+      - name: "MovieID"
+        in: "query"
+        description: "Id of the watched movie"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "username"
+        in: "query"
+        description: "Username variable"
+        required: true
+        type: "string"
+      consumes:
+      - "application/json"
+      produces:
+        - "application/json"
+      responses:
+          201:
+            description: "successful operation"
+          500:
+            description: "Internal server error"
+    
+    delete:
+      tags:
+      - "moviewatched"
+      summary: "Delete a MovieWatched record"
+      parameters:
+      - name: "MovieID"
+        in: "query"
+        description: "Id of the watched movie"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "username"
+        in: "query"
+        description: "Username variable"
+        required: true
+        type: "string"
+      consumes:
+      - "application/json"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+          500:
+            description: "Internal server error"
+            
+            
+            
+    put:
+      tags:
+      - "moviewatched"
+      summary: "Update MovieWatched info (fav, rate)" 
+      parameters:
+      - name: "MovieWatched"
+        in: "body"
+        description: "Watched movie to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/MovieWatched"
+      consumes:
+      - "application/json"
+      produces:
+        - "application/json"
+      responses:
+          200:
+            description: "successful operation"
+          500:
+            description: "Internal server error"
+  
+  
+          
+definitions:
+  Movie:
+    type: "object"
+    properties:
+      MovieID:
+        type: "integer"
+        format: "int64"
+      Title:
+        type: "string"
+      Duration:
+        type: "integer"
+        format: "int64"
+      ReleaseDate:
+        type: "string"
+        format: "datetime"
+      Description:
+        type: "string"
+      ImageUrl:
+        type: "string"
+      Rate:
+        type: "number"
+
+  Category:
+    type: "object"
+    properties:
+      CategoryID:
+        type: "integer"
+        format: "int64"
+      Name:
+        type: "string"
+      Movies:
+        type: "array"
+        items:
+          $ref: "#/definitions/Movie"
+          
+  Review:
+    type: "object"
+    properties:
+      ReviewID:
+        type: "integer"
+        format: "int64"
+      Content:
+        type: "string"
+      Date:
+        type: "string"
+        format: "date-time"
+      Username:
+        type: "string"
+      MovieID:
+        type: "integer"
+        format: "int64"
+        
+  User:
+    type: "object"
+    properties:
+      Username:
+        type: "string"
+      Password:
+        type: "string"
+      Name:
+        type: "string"
+        
+  MovieWatched:
+    type: "object"
+    properties:
+      MovieID:
+        type: "integer"
+        format: "int64"
+      Username:
+        type: "string"
+      Favorite:
+        type: "boolean"
+      Rate:
+        type: "number"
+      Date:
+        type: "string"
+        format: "date-time"
+      
+    
