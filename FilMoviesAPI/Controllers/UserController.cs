@@ -29,7 +29,6 @@ namespace FilMoviesAPI.Controllers
         }
 
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage Get(string username)
         {
             try
@@ -62,6 +61,26 @@ namespace FilMoviesAPI.Controllers
                 });
             }
             catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+
+        [Route("api/user/totalWatched")]
+        public HttpResponseMessage GetStats(string username)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new
+                {
+                    totalTime = UserBLL.GetTotalWatchedTime(username),
+                    totalWatched = UserBLL.GetTotalWatched(username),
+                    totalFavorite = UserBLL.GetTotalFavorite(username),
+                    totalRated = UserBLL.GetTotalRated(username),
+                    totalReviews = UserBLL.GetTotalReviews(username)
+                });
+            }
+            catch (KeyNotFoundException)
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }

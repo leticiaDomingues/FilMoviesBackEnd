@@ -52,5 +52,45 @@ namespace FilMoviesBLL
                 return user;
             }
         }
+
+        public static int GetTotalWatchedTime(string username)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                return unityOfWork.Users.GetTotalWatchedMoviesDuration(username);
+            }
+        }
+
+        public static int GetTotalWatched(string username)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                return unityOfWork.Users.GetTotalWatchedMovies(username);
+            }
+        }
+
+        public static int GetTotalFavorite(string username)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                return unityOfWork.Users.GetTotalFavoriteMovies(username);
+            }
+        }
+
+        public static int GetTotalRated(string username)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                return unityOfWork.Users.GetTotalRatedMovies(username);
+            }
+        }
+
+        public static int GetTotalReviews(string username)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                return unityOfWork.Users.GetTotalReviewsMovies(username);
+            }
+        }
     }
 }

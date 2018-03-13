@@ -26,6 +26,50 @@ namespace FilMoviesAPI.Repositories
             return FilMoviesContext.Users.Where(u => u.Username.Equals(username)).FirstOrDefault();
         }
 
+        public int GetTotalFavoriteMovies(string username)
+        {
+            return FilMoviesContext.MoviesWatched
+                .Where(mw => mw.Username.Equals(username) && mw.Favorite==true)
+                .ToList().Count();
+        }
+
+        public int GetTotalRatedMovies(string username)
+        {
+            return FilMoviesContext.MoviesWatched
+                .Where(mw => mw.Username.Equals(username) && mw.Rate > 0)
+                .ToList().Count();
+        }
+
+        public int GetTotalReviewsMovies(string username)
+        {
+            return FilMoviesContext.Reviews
+                .Where(r => r.Username.Equals(username))
+                .ToList().Count();
+        }
+
+        public int GetTotalWatchedMovies(string username)
+        {
+            return FilMoviesContext.MoviesWatched.Where(u => u.Username.Equals(username)).ToList().Count();
+        }
+
+        public int GetTotalWatchedMoviesDuration(string username)
+        {
+            try
+            {
+                var total = FilMoviesContext.Database.SqlQuery<int>("SELECT SUM(m.Duration) FROM MoviesWatched mw " +
+                                                                    "JOIN Movies m " +
+                                                                    "ON m.MovieID = mw.MovieID " +
+                                                                    "WHERE username = '" + username + "' " +
+                                                                    "GROUP BY mw.Username").FirstOrDefault();
+
+                return (int)total;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
         public User Login(User user)
         {
             var password = Encryption.sha256(user.Password);

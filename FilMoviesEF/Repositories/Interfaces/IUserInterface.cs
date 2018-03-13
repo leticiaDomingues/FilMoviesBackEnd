@@ -11,6 +11,11 @@ namespace FilMoviesAPI.Repositories.Interfaces
     {
         User Login(User user);
         User Get(string username);
+        int GetTotalWatchedMoviesDuration(string username);
+        int GetTotalWatchedMovies(string username);
+        int GetTotalFavoriteMovies(string username);
+        int GetTotalRatedMovies(string username);
+        int GetTotalReviewsMovies(string username);
 
         new User Add(User user);
     }
