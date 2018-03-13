@@ -42,5 +42,15 @@ namespace FilMoviesBLL
                 return createdUser;
             }
         }
+
+        public static User GetUser(string username)
+        {
+            using (var unityOfWork = new UnitOfWork(new FilMoviesContext()))
+            {
+                User user = unityOfWork.Users.Get(username);
+                user.Password = null;
+                return user;
+            }
+        }
     }
 }

@@ -20,8 +20,8 @@ namespace FilMoviesAPI
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}/{page}",
-                defaults: new { id = RouteParameter.Optional, page = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{id}/{page}/{username}",
+                defaults: new { id = RouteParameter.Optional, page = RouteParameter.Optional, username = RouteParameter.Optional }
             );
 
             config.Formatters.JsonFormatter

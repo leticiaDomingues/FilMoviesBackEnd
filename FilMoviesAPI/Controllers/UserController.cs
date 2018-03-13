@@ -28,6 +28,21 @@ namespace FilMoviesAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
+
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        public HttpResponseMessage Get(string username)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, UserBLL.GetUser(username));
+            }
+            catch (KeyNotFoundException)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
+
+
         public HttpResponseMessage Post([FromBody] User user)
         {
             try
